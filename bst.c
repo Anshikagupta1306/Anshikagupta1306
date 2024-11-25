@@ -78,6 +78,14 @@ void levelordertraversal(struct node*root){
        printlevel(root,i);
     }
 }
+int calculatePathLength(struct node* root, int depth) {
+    if (root == NULL) {
+        return 0;
+    }
+    return depth + 
+           calculatePathLength(root->left, depth + 1) + 
+           calculatePathLength(root->right, depth + 1);
+}
 //delete a node
 struct node*delete(struct node*root,int key){
     if(root==NULL){
@@ -149,7 +157,7 @@ int main(){
     struct node*root=NULL;
     int ch,data,h;
     do{
-        printf("\npress:\n 1.insert element\n 2.inorder traversal\n 3.postorder traversal\n 4.preorder traversal\n 5.delete a node\n 6.search an element\n 7.find the height of the tree\n 8.find the depth of a node\n 9.level order traversal\n 10.exit\n");
+        printf("\npress:\n 1.insert element\n 2.inorder traversal\n 3.postorder traversal\n 4.preorder traversal\n 5.delete a node\n 6.search an element\n 7.find the height of the tree\n 8.find the depth of a node\n 9.level order traversal\n 10.to calculate the path length\n 11.exit\n");
         scanf("%d",&ch);
         switch(ch){
             case 1:printf("enter data:\n");
@@ -183,9 +191,11 @@ int main(){
                    break;
             case 9:levelordertraversal(root);
                     break;
-            case 10:break;
-
+             case 10:h=calculatePathLength(root,0);
+                    printf("%d",h);
+                    break;
+            case 11:break;
         }
-    }while(ch!=10);
+    }while(ch!=11);
     return 0;
 }
