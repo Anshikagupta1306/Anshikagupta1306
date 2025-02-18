@@ -1,7 +1,7 @@
 import java.util.*;
 public class getithbit {
     public static int getbit(int n,int i){
-        int bitmask=i<<i;
+        int bitmask=1<<i;
         if((n&bitmask)==0){
             return 0;
         }
